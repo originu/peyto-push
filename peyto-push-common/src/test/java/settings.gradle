@@ -1,0 +1,7 @@
+includeFlat "peyto-push-dist"
+includeFlat "peyto-push-home"
+includeFlat "peyto-push-common"
+includeFlat "peyto-push-service"
+includeFlat "peyto-push-server"
+includeFlat "peyto-push-worker"
+includeFlat "peyto-push-admin"

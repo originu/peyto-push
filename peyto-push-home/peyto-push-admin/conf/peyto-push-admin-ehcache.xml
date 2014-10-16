@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+	<defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="10"
+            timeToLiveSeconds="10"
+            overflowToDisk="false"
+            maxElementsOnDisk="10000000"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="100"
+            memoryStoreEvictionPolicy="LRU"
+            />
+            
+<!--     <cache name="pushKeys" -->
+<!--             eternal="true" -->
+<!--             maxElementsInMemory="1000000" -->
+<!--             memoryStoreEvictionPolicy="LRU"> -->
+<!-- 		<searchable> -->
+<!-- 			<searchAttribute name="userId" expression="value.getUserId()" /> -->
+<!-- 			<searchAttribute name="appName" expression="value.getAppName()" /> -->
+<!-- 		</searchable> -->
+<!-- 		<cacheEventListenerFactory -->
+<!-- 			class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" -->
+<!-- 			properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true " /> -->
+<!-- 	</cache> -->
+
+<!-- 	<cacheManagerPeerListenerFactory -->
+<!-- 		class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory" -->
+<!-- 		properties="hostName=localhost, port=40001, socketTimeoutMillis=30000" /> -->
+
+<!-- 	<cacheManagerPeerProviderFactory -->
+<!-- 		class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory" -->
+<!-- 		properties="peerDiscovery=manual,rmiUrls=//127.0.0.1:40003/pushKeys" /> -->
+		
+<!-- 	<cacheManagerPeerListenerFactory -->
+<!-- 		class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory" -->
+<!-- 		properties="hostName=localhost, port=40003, socketTimeoutMillis=30000" /> -->
+
+<!-- 	<cacheManagerPeerProviderFactory -->
+<!-- 		class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory" -->
+<!-- 		properties="peerDiscovery=manual,rmiUrls=//127.0.0.1:40001/pushKeys" /> -->
+            
+</ehcache>

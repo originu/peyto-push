@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+var page = {
+	init : function() {
+		
+		
+	}
+		
+}

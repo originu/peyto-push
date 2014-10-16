@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="peyto.push.pushkeys.dao.api.IPushKeysDAO">
+
+	<resultMap id="pushKeyResultMap" type="PushKeyDTO">
+		<result property="pushkey"				column="PUSH_KEY"/>
+		<result property="userId"				column="USER_ID"/>
+		<result property="appId"				column="APP_ID"/>
+		<result property="deviceUid"			column="DEVICE_UID"/>
+		<result property="deviceModelName"		column="DEVICE_MODEL_NAME"/>
+		<result property="pushNotificatorType"	column="PUSH_NOTI_TYPE"/>
+		<result property="osVersion"			column="OS_VERSION"/>
+		<result property="osType"				column="OS_TYPE"/>
+		<result property="sound"				column="SOUND"/>
+		<result property="enabled"				column="IS_ENABLED"/>
+		<result property="createdDate"			column="CREATED_DATE"/>
+		<result property="updatedDate"			column="UPDATED_DATE"/>
+	</resultMap>
+	
+	<sql id="columns">
+		PUSH_KEY,
+		USER_ID,
+		APP_ID,
+		DEVICE_UID,
+		DEVICE_MODEL_NAME,
+		PUSH_NOTI_TYPE,
+		OS_VERSION,
+		OS_TYPE,
+		SOUND,
+		IS_ENABLED,
+		CREATED_DATE,
+		UPDATED_DATE		
+	</sql>
+	
+	<insert id="add" parameterType="PushKeyDTO">
+		INSERT INTO PP_PUSH_KEYS
+		(
+			<include refid="columns"/>
+		) 
+		VALUES 
+		(
+			#{pushkey},				
+			#{userId},
+			#{appId},
+			#{deviceUid},
+			#{deviceModelName},
+			#{pushNotificatorType},
+			#{osVersion},
+			#{osType},
+			#{sound},						
+			#{enabled},						
+			#{createdDate},
+			#{updatedDate}
+		)
+	</insert>
+
+	<select id="get" resultMap="pushKeyResultMap" parameterType="String">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			PP_PUSH_KEYS
+		WHERE
+			PUSH_KEY = #{pushkey}
+	</select>
+
+	<select id="getItems" resultMap="pushKeyResultMap" parameterType="PushKeyPaginationDTO">
+		SELECT 
+			P.PUSH_KEY,
+			P.USER_ID,
+			P.APP_ID,
+			P.DEVICE_UID,
+			P.DEVICE_MODEL_NAME,
+			P.PUSH_NOTI_TYPE,
+			P.OS_VERSION,
+			P.OS_TYPE,
+			P.SOUND,
+			P.IS_ENABLED,
+			P.CREATED_DATE,
+			P.UPDATED_DATE		
+		FROM 
+		( 
+			SELECT
+				ROW_NUMBER() OVER( ORDER BY USER_ID ASC ) AS NUM,
+				<include refid="columns"/>
+			FROM
+				PP_PUSH_KEYS						
+		) P
+		WHERE
+			P.NUM BETWEEN ( ( #{page} - 1 ) * #{size} + 1 ) AND ( #{page} * #{size} )
+	</select>
+
+	<select id="getSize" resultType="Integer">
+		SELECT COUNT(USER_ID) FROM PP_PUSH_KEYS
+	</select>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM PP_PUSH_KEYS WHERE PUSH_KEY = #{pushkey}
+	</delete>
+
+	<delete id="deleteAll">
+		DELETE FROM PP_PUSH_KEYS
+	</delete>
+	
+<!-- 	<update id="updatePeytoSample" parameterType="PeytoSampleDTO"> -->
+<!-- 		UPDATE -->
+<!-- 			PEYTO_SAMPLE -->
+<!-- 		SET -->
+<!-- 			USER_NAME 	= #{userName}, -->
+<!-- 			BIRTHDAY	= #{birthday} -->
+<!-- 		WHERE -->
+<!-- 			USER_ID		= #{userId} -->
+<!-- 	</update> -->
+
+<!-- 	<delete id="deletePeytoSample" parameterType="String"> -->
+<!-- 		DELETE FROM -->
+<!-- 			PEYTO_SAMPLE -->
+<!-- 		WHERE -->
+<!-- 			USER_ID = #{userId} -->
+<!-- 	</delete>	 -->
+
+<!-- 	<delete id="deleteAll"> -->
+<!-- 		DELETE FROM -->
+<!-- 			PEYTO_SAMPLE -->
+<!-- 	</delete>	 -->
+	
+	
+<!-- 	<insert id="addpeytoEvent" parameterType="peytoEventDTO"> -->
+<!-- 		INSERT INTO peyto_EVENTS ( -->
+<!-- 			TRX_DAY,  -->
+<!-- 			TRX_ID,  -->
+<!-- 			EVENT_ID,  -->
+<!-- 			SERVER_ID,  -->
+<!-- 			EDGE_ID,  -->
+<!-- 			USER_ID,  -->
+<!-- 			APP_NAME,  -->
+<!-- 			DEVICE_UID, -->
+<!-- 			DEVICE_OS_TYPE, -->
+<!-- 			peyto_PROVIDER_TYPE, -->
+<!-- 			EVENT_STATUS,  -->
+<!-- 			RESULT_CODE,  -->
+<!-- 			SEND_DATE,  -->
+<!-- 			COMPLETED_DATE, -->
+<!-- 			SEND_COUNT,  -->
+<!-- 			FAIL_COUNT,  -->
+<!-- 			IS_READ,  -->
+<!-- 			IS_ARRIVED,  -->
+<!-- 			IS_CHECKED,  -->
+<!-- 			IS_DELETED  -->
+<!-- 		) VALUES (  -->
+<!-- 			#{trxDay}, #{trxId}, #{eventId}, #{serverId}, #{edgeId}, #{userId}, #{appName},  -->
+<!-- 			#{deviceUid}, #{deviceOsType}, #{peytoProviderType},  -->
+<!-- 			#{eventStatus}, #{resultCode}, #{sendDate}, #{completedDate},  -->
+<!-- 			#{sendCount}, #{failCount}, #{read}, #{arrived}, #{checked}, #{deleted} -->
+<!-- 		)  -->
+<!-- 	</insert> -->
+	
+<!-- 	<update id="updatepeytoEventForReceiptNotification" parameterType="peytoReceiptNotificationDTO"> -->
+<!-- 		UPDATE -->
+<!-- 			peyto_EVENTS -->
+<!-- 		SET -->
+<!-- 			<choose> -->
+<!-- 				<when test="arrived == true and checked == true"> -->
+<!-- 					IS_ARRIVED		= #{arrived}, -->
+<!-- 					ARRIVED_DATE	= #{arrivedDate}, -->
+<!-- 					IS_CHECKED		= #{checked}, -->
+<!-- 					CHECKED_DATE	= #{checkedDate} -->
+<!-- 				</when> -->
+<!-- 				<when test="arrived == true and checked == false"> -->
+<!-- 					IS_ARRIVED		= #{arrived}, -->
+<!-- 					ARRIVED_DATE	= #{arrivedDate}, -->
+<!-- 					IS_CHECKED		= #{checked} -->
+<!-- 				</when> -->
+<!-- 				<when test="arrived == false and checked == true"> -->
+<!-- 					IS_ARRIVED		= #{arrived}, -->
+<!-- 					IS_CHECKED		= #{checked}, -->
+<!-- 					CHECKED_DATE	= #{checkedDate} -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 		WHERE -->
+<!-- 			TRX_DAY  = #{trxDay} AND -->
+<!-- 			TRX_Id	 = #{trxId}  AND -->
+<!-- 			EVENT_ID = #{eventId} -->
+<!-- 	</update> -->
+	
+<!-- 	<delete id="deletepeytoEventsBeforeTrxDay" parameterType="java.lang.String"> -->
+<!-- 		DELETE FROM peyto_EVENTS  -->
+<!-- 		WHERE TRX_DAY &lt; #{trxDay} -->
+<!-- 	</delete> -->
+
+</mapper>

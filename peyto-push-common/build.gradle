@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'peyto-push-common', 'Implementation-Version': version
+    }
+}
+
+dependencies {
+    compile ( "org.mybatis:mybatis:3.2.2" )
+}

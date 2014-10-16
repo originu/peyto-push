@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
+        				http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd		
+                        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+                        http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.3.xsd">
+	
+
+
+	<mvc:resources mapping="/fs/**" location="file:${PEYTO_PUSH_HOME}/peyto.push.admin/web_resources/" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- the default location is the webapp direcotory in web project -->
+	<!-- <mvc:resources mapping="/resources/**" location="/resources/" />  -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<mvc:annotation-driven/>
+
+	<context:annotation-config />
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="requestContextAttribute" value="request" />
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		<property name="order">
+			<value>1</value>
+		</property>
+	</bean>
+ 	-->
+ 	
+ 	<!-- tiles -->
+ 	<bean id="viewResolver"	class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+ 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+ 		<property name="order" value="1"/>
+ 	</bean>
+ 	
+ 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+ 		<property name="definitions">
+ 			<list>
+ 				<value>/WEB-INF/tiles3-layout.xml</value>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	  
+ 	  
+ 	<!-- interceptor -->
+	<bean id="basicInterceptor" class="peyto.push.admin.http.interceptors.BasicInterceptor" />
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<ref bean="basicInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+</beans>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="
+                            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+        					http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd		
+                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd 
+                            http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
+
+	<!-- for mybatis -->
+
+	<!-- oracle -->
+	<!-- 
+	<bean id="peytoPushDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"	value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" 				value="jdbc:oracle:thin:@192.168.100.101:1521:orcl"/>
+		<property name="username" 			value="scala"/>
+		<property name="password"			value="000000"/>
+	</bean>
+ 	-->
+ 
+	<!-- mssql  -->
+	<!-- 
+ 	<bean id="peytoPushDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 		<property name="driverClassName"	value="com.microsoft.sqlserver.jdbc.SQLServerDriver"  />
+ 		<property name="url" 				value="jdbc:sqlserver://192.168.0.105\\MSSQLSERVER:1433;DatabaseName=peyto"/>
+ 		<property name="username" 			value="kevin"/>
+		<property name="password"			value="000000"/>
+	</bean>
+	-->
+	
+	<!-- mariadb -->
+	<bean id="peytoPushDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"	value="org.mariadb.jdbc.Driver"/>
+		<property name="url" 				value="jdbc:mariadb://192.168.100.101:3306/peyto_push"/>
+		<property name="username" 			value="root"/>
+		<property name="password"			value="000000"/>
+	</bean>
+
+<!-- 	<bean id="peytoPushTransactionManager"  -->
+<!-- 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager"  -->
+<!-- 			p:dataSource-ref="peytoPushDataSource" /> -->
+
+<!-- 	<bean id="peytoPushSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
+<!-- 		<property name="dataSource" ref="peytoPushDataSource" /> -->
+<!-- 		<property name="configLocation" value="file:${PEYTO_PUSH_HOME}/peyto.push.server.master/conf/data/mybatis/sqlmapconfig.xml" /> -->
+<!-- 		<property name="mapperLocations"> -->
+<!-- 			<util:list> -->
+<!-- 				<value>file:${PEYTO_PUSH_HOME}/peyto.push.server.master/conf/data/mybatis/oracle/PushKeysDAO.xml</value> -->
+<!-- 				<value>file:${PEYTO_PUSH_HOME}/peyto.push.server.master/conf/data/mybatis/oracle/PushMessagesDAO.xml</value> -->
+<!-- 			</util:list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+<!-- 		<property name="sqlSessionFactoryBeanName" value="peytoPushSessionFactory" /> -->
+<!--   		<property name="basePackage" value="peyto.push.**.dao.api" /> -->
+<!-- 	</bean> -->
+	
+</beans>

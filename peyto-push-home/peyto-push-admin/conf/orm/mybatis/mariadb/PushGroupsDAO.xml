@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="peyto.push.dao.api.IPushGroupsDAO">
+
+	<resultMap id="pushGroupResultMap" type="PushGroupDTO">
+		<result property="itemId"			column="ITEM_ID"/>
+		<result property="parentItemId"		column="PITEM_ID"/>
+		<result property="itemName"			column="ITEM_NAME"/>
+		<result property="itemType"			column="ITEM_TYPE"/>
+		<result property="itemDescription"	column="ITEM_DESC"/>
+		<result property="appId"			column="APP_ID"/>
+	</resultMap>
+	
+	<insert id="add">
+		INSERT INTO PT_PUSH_GROUPS 
+		( ITEM_ID, PITEM_ID, ITEM_NAME, ITEM_TYPE, ITEM_DESC, APP_ID )
+		VALUES
+		( #{itemId}, #{parentItemId}, #{itemName}, #{itemType}, #{itemDescription}, #{appId} );
+	</insert>
+	
+	<select id="getByItemId" resultMap="pushGroupResultMap">
+		SELECT
+			ITEM_ID, PITEM_ID, ITEM_NAME, ITEM_NAME, ITEM_TYPE, ITEM_DESC, APP_ID
+		FROM
+			PT_PUSH_GROUPS
+		WHERE
+			ITEM_ID = #{itemId}
+	</select>
+
+	<select id="getByItemName" resultMap="pushGroupResultMap">
+		SELECT
+			ITEM_ID, PITEM_ID, ITEM_NAME, ITEM_NAME, ITEM_TYPE, ITEM_DESC, APP_ID
+		FROM
+			PT_PUSH_GROUPS
+		WHERE
+			ITEM_NAME = #{itemName}
+	</select>
+	
+	<delete id="deleteAll">
+		DELETE FROM PT_PUSH_GROUPS
+	</delete>
+	
+
+</mapper>
