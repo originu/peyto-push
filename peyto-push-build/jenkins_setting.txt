@@ -1,0 +1,43 @@
+
+
+======================================================
+Tomcat Configurations for jenkins
+======================================================
+1. in catalina.bat
+set JENKINS_HOME=C:/LH/jenkins/.jenkins
+JAVA_OPTS="%JAVA_OPTS% -Xmx1024m -Xms256m -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError"
+
+2. in server.xml
+<Connector port="8080" protocol="HTTP/1.1" 
+           connectionTimeout="20000" 
+           redirectPort="8443"
+           URIEncoding="UTF-8" /> 
+
+======================================================
+Jenkins Configurations
+======================================================
+
+Name: 
+
+# Slack
+Project Channel: 
+- Check Notify Failure
+- Check Notify Success
+
+# Source Code Management
+- Subversion
+	- Repository URL: http://~~r/~~/~~/trunk
+	- Local module directory (optional): .
+
+	
+# Build Trigger
+- Check Trigger builds remotely (e.g., from scripts)
+- Authentication Token: execute
+
+
+# Build
+- Invoke Ant
+	Ant Version: apache-ant-1.9.2
+	Targets: deploy_and_restart_tomcat_in_development
+	Build File: project/build.xml
+	
