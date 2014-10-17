@@ -1,0 +1,56 @@
+
+project.ext {
+	propertyFile	= './setup.properties'
+	
+	Properties	props	= new Properties()
+	props.load( new File( propertyFile ).newDataInputStream() )
+
+	dbDriver		= props.getProperty( 'dbDriver' )
+	dbUrl			= props.getProperty( 'dbUrl' )
+	dbUsername		= props.getProperty( 'dbUsername' )
+	dbPassword		= props.getProperty( 'dbPassword' )
+	dbDriverFile	= props.getProperty( 'dbDriverFile' )
+}
+
+task help << {
+	println '----------------------------------------------------'
+	println 'Command      Description                            '
+	println '----------------------------------------------------'
+	println 'create       create db tables                       '
+	println 'drop         drop db tables                         '
+	println 'test         test a db connection                   '       
+	println '----------------------------------------------------'
+}
+
+task create << {
+	executeDB( [ './db/00.create_tables.sql' ] )
+}
+
+task drop << {
+	executeDB( [ './db/01.drop_tables.sql' ] )
+}
+
+task test << {
+	executeDB( [ './db/09.test_connection.sql' ] )
+}
+
+void executeDB( List< String > sqlFiles ) {
+	ant {
+		property( file: propertyFile )
+		sql(
+			driver: dbDriver,
+			url: dbUrl,
+			userid: dbUsername,
+			password: dbPassword,
+			encoding: 'UTF-8',
+			expandproperties: true,
+			print: 'yes' ) {
+			sqlFiles.each { sqlFile -> transaction( src: sqlFile ) }
+			classpath() { pathelement( location: dbDriverFile ) }
+		}
+	}
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.1'
+}
