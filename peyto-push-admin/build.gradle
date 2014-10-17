@@ -4,7 +4,7 @@ apply plugin: 'application'
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'peyto-push-worker', 'Implementation-Version': version
+        attributes 'Implementation-Title': 'peyto-push-worker', 'Implementation-Version': 1.0
     }
 }
 
