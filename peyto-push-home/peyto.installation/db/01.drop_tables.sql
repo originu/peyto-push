@@ -1,1 +1,1 @@
-DROP TABLE events2;
+drop table events2;

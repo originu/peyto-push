@@ -12,12 +12,14 @@ project.ext {
 	dbDriverFile	= props.getProperty( 'dbDriverFile' )
 }
 
-task list << {
-	println '===================================================='
-	println '00. test a db connection'
-	println '01. create db tables'
-	println '02. drop db tables'
-	println '===================================================='
+task help << {
+	println '----------------------------------------------------'
+	println 'Command      Description                            '
+	println '----------------------------------------------------'
+	println 'create       create db tables                       '
+	println 'drop         drop db tables                         '
+	println 'test         test a db connection                   '       
+	println '----------------------------------------------------'
 }
 
 task create << {
