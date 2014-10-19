@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="peyto.push.dao.api.PushGCMCertDAO">
+
+	<resultMap id="pushGCMCertResultMap" type="PushGCMCertDTO">
+		<result property="appId"				column="APP_ID"/>
+		<result property="appDesc"				column="APP_DESC"/>
+		<result property="pushType"				column="PUSH_TYPE"/>
+		<result property="certApiKey"			column="CERT_API_KEY"/>
+		<result property="certProductId"		column="CERT_PRODUCT_ID"/>
+		<result property="certDelayWhileIdle"	column="CERT_DELAY_WHILE_IDLE"/>
+		<result property="certRetry"			column="CERT_RETRY"/>
+		<result property="certTimeToLive"		column="CERT_TIME_TO_LIVE"/>
+		<result property="certGMail"			column="CERT_GMAIL"/>
+		<result property="createdDate"			column="CREATED_DATE"/>
+	</resultMap>
+	
+	<sql id="columns">
+		APP_ID,
+		APP_DESC,  
+		PUSH_TYPE,  
+		CERT_API_KEY,
+		CERT_PRODUCT_ID,  
+		CERT_DELAY_WHILE_IDLE,
+		CERT_RETRY,
+		CERT_TIME_TO_LIVE,
+		CERT_GMAIL,
+		CREATED_DATE		
+	</sql>
+
+	<insert id="add" parameterType="PushGCMCertDTO">
+		INSERT INTO PT_PUSH_GCM_CERTS
+		(
+			<include refid="columns"/>
+		) 
+		VALUES 
+		(
+			#{appId},
+			#{appDesc},
+			#{pushType},
+			#{certApiKey},
+			#{certProductId},
+			#{certDelayWhileIdle},
+			#{certRetry},
+			#{certTimeToLive},
+			#{certGMail},
+			#{createdDate}
+		)
+	</insert>
+
+	<select id="getByAppId" resultMap="pushGCMCertResultMap">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			PT_PUSH_GCM_CERTS
+		WHERE
+			APP_ID = #{appId}
+	</select>
+
+	<delete id="deleteAll">
+		DELETE FROM PT_PUSH_GCM_CERTS
+	</delete>
+
+	<delete id="deleteByAppId">
+		DELETE FROM PT_PUSH_GCM_CERTS WHERE APP_ID = #{appId}
+	</delete>
+	
+<!-- 	<update id="updatePeytoSample" parameterType="PeytoSampleDTO"> -->
+<!-- 		UPDATE -->
+<!-- 			PEYTO_SAMPLE -->
+<!-- 		SET -->
+<!-- 			USER_NAME 	= #{userName}, -->
+<!-- 			BIRTHDAY	= #{birthday} -->
+<!-- 		WHERE -->
+<!-- 			USER_ID		= #{userId} -->
+<!-- 	</update> -->
+
+<!-- 	<delete id="deletePeytoSample" parameterType="String"> -->
+<!-- 		DELETE FROM -->
+<!-- 			PEYTO_SAMPLE -->
+<!-- 		WHERE -->
+<!-- 			USER_ID = #{userId} -->
+<!-- 	</delete>	 -->
+
+<!-- 	<delete id="deleteAll"> -->
+<!-- 		DELETE FROM -->
+<!-- 			PEYTO_SAMPLE -->
+<!-- 	</delete>	 -->
+	
+	
+<!-- 	<insert id="addpeytoEvent" parameterType="peytoEventDTO"> -->
+<!-- 		INSERT INTO peyto_EVENTS ( -->
+<!-- 			TRX_DAY,  -->
+<!-- 			TRX_ID,  -->
+<!-- 			EVENT_ID,  -->
+<!-- 			SERVER_ID,  -->
+<!-- 			EDGE_ID,  -->
+<!-- 			USER_ID,  -->
+<!-- 			APP_NAME,  -->
+<!-- 			DEVICE_UID, -->
+<!-- 			DEVICE_OS_TYPE, -->
+<!-- 			peyto_PROVIDER_TYPE, -->
+<!-- 			EVENT_STATUS,  -->
+<!-- 			RESULT_CODE,  -->
+<!-- 			SEND_DATE,  -->
+<!-- 			COMPLETED_DATE, -->
+<!-- 			SEND_COUNT,  -->
+<!-- 			FAIL_COUNT,  -->
+<!-- 			IS_READ,  -->
+<!-- 			IS_ARRIVED,  -->
+<!-- 			IS_CHECKED,  -->
+<!-- 			IS_DELETED  -->
+<!-- 		) VALUES (  -->
+<!-- 			#{trxDay}, #{trxId}, #{eventId}, #{serverId}, #{edgeId}, #{userId}, #{appName},  -->
+<!-- 			#{deviceUid}, #{deviceOsType}, #{peytoProviderType},  -->
+<!-- 			#{eventStatus}, #{resultCode}, #{sendDate}, #{completedDate},  -->
+<!-- 			#{sendCount}, #{failCount}, #{read}, #{arrived}, #{checked}, #{deleted} -->
+<!-- 		)  -->
+<!-- 	</insert> -->
+	
+<!-- 	<update id="updatepeytoEventForReceiptNotification" parameterType="peytoReceiptNotificationDTO"> -->
+<!-- 		UPDATE -->
+<!-- 			peyto_EVENTS -->
+<!-- 		SET -->
+<!-- 			<choose> -->
+<!-- 				<when test="arrived == true and checked == true"> -->
+<!-- 					IS_ARRIVED		= #{arrived}, -->
+<!-- 					ARRIVED_DATE	= #{arrivedDate}, -->
+<!-- 					IS_CHECKED		= #{checked}, -->
+<!-- 					CHECKED_DATE	= #{checkedDate} -->
+<!-- 				</when> -->
+<!-- 				<when test="arrived == true and checked == false"> -->
+<!-- 					IS_ARRIVED		= #{arrived}, -->
+<!-- 					ARRIVED_DATE	= #{arrivedDate}, -->
+<!-- 					IS_CHECKED		= #{checked} -->
+<!-- 				</when> -->
+<!-- 				<when test="arrived == false and checked == true"> -->
+<!-- 					IS_ARRIVED		= #{arrived}, -->
+<!-- 					IS_CHECKED		= #{checked}, -->
+<!-- 					CHECKED_DATE	= #{checkedDate} -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 		WHERE -->
+<!-- 			TRX_DAY  = #{trxDay} AND -->
+<!-- 			TRX_Id	 = #{trxId}  AND -->
+<!-- 			EVENT_ID = #{eventId} -->
+<!-- 	</update> -->
+	
+<!-- 	<delete id="deletepeytoEventsBeforeTrxDay" parameterType="java.lang.String"> -->
+<!-- 		DELETE FROM peyto_EVENTS  -->
+<!-- 		WHERE TRX_DAY &lt; #{trxDay} -->
+<!-- 	</delete> -->
+
+</mapper>
