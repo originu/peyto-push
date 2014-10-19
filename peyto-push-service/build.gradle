@@ -12,13 +12,13 @@ dependencies {
     //compile ( "com.typesafe.akka:akka-remote_2.10:2.3.1" )
     //compile ( "com.typesafe.akka:akka-cluster_2.10:2.3.1" )
 
-    compile 'org.hibernate:hibernate-core:4.3.6.Final'
+    // compile 'org.hibernate:hibernate-core:4.3.6.Final'
 	// for JPA, use hibernate-entitymanager instead of hibernate-core
-    compile 'org.hibernate:hibernate-entitymanager:4.3.6.Final'
-    compile 'org.hibernate:hibernate-envers:4.3.6.Final'
+    // compile 'org.hibernate:hibernate-entitymanager:4.3.6.Final'
+    // compile 'org.hibernate:hibernate-envers:4.3.6.Final'
     
-    //compile ( "org.mybatis:mybatis-spring:1.2.0" )
-    //compile ( "org.mybatis:mybatis:3.2.2" )
+    compile ( "org.mybatis:mybatis-spring:1.2.2" )
+    compile ( "org.mybatis:mybatis:3.2.8" )
 
     compile project ( ":peyto-push-common" )
     

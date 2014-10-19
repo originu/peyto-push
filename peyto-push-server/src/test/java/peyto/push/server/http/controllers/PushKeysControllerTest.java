@@ -20,9 +20,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import peyto.push.common.pushkeys.PushOSType;
-import peyto.push.common.pushkeys.PushType;
 import peyto.push.common.test.PeytoPushHomeConfigurator;
+import peyto.push.common.types.PushOSType;
+import peyto.push.common.types.PushType;
 import peyto.push.dto.PushKeyDTO;
 import peyto.push.dto.PushKeyPaginationDTO;
 

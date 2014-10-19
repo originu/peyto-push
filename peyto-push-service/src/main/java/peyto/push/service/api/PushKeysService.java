@@ -10,7 +10,6 @@ public interface PushKeysService {
 	int add(PushKeyDTO pushkey);
 
 	PushKeyDTO get(String pushkey);
-
 	int delete(String pushkey);
 
 	int deleteAll();

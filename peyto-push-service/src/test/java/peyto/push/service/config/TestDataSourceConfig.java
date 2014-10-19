@@ -3,12 +3,12 @@ package peyto.push.service.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import peyto.push.common.PeytoConfig;
+import org.springframework.jndi.JndiObjectFactoryBean;
 
 /**
  * 
@@ -22,17 +22,27 @@ import peyto.push.common.PeytoConfig;
 public class TestDataSourceConfig {
 	
 	@Autowired
-	private PeytoConfig	config;
+	private Environment	env;
 	
-	@Bean
-	@Qualifier( "mainDataSource" )
-	public DataSource dataSource() {
+	@Bean( name = "mainDataSource" )
+	@Profile( "dev" )
+	public DataSource dataSource_dev() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName( config.DB_DRIVER_CLASS_NAME );
-		dataSource.setUrl( config.DB_URL );
-		dataSource.setUsername( config.DB_USERNAME );
-		dataSource.setPassword( config.DB_PASSWORD );
+		dataSource.setDriverClassName( env.getProperty( "main.db.driver.class.name" ) );
+		dataSource.setUrl( env.getProperty( "main.db.url" ) );
+		dataSource.setUsername( env.getProperty( "main.db.username" ) );
+		dataSource.setPassword( env.getProperty( "main.db.password" ) );
 		return dataSource;
 	}
+	
+	@Bean( name = "mainDataSource" )
+	@Profile( "pro" )
+	public DataSource dataSource_pro() {
+		JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
+		jndiObjectFactoryBean.setJndiName( env.getProperty( "main.jndi.name.datasource" ) );
+		return ( DataSource ) jndiObjectFactoryBean.getObject(); 
+	}
+	
+
 	
 }

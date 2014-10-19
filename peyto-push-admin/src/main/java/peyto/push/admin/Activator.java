@@ -24,7 +24,6 @@ public class Activator {
 		
 		Process p = null; 
 		try {
-			Thread.sleep( 1000 );
 			String[]	params	= { "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", "localhost:9000" };
 			p = Runtime.getRuntime().exec( params );
 			p.waitFor();

@@ -20,7 +20,7 @@ public class ObjectNodeTypeHandler implements TypeHandler< ObjectNode > {
 	private static final Logger	logger	= LoggerFactory.getLogger( ObjectNode.class );
 	
 	private static ObjectMapper	om	= new ObjectMapper();
-	
+
 	@Override
 	public void setParameter( PreparedStatement ps, int columnIndex, ObjectNode parameter, JdbcType jdbcType) throws SQLException {
 		ps.setString( columnIndex, parameter.toString() );

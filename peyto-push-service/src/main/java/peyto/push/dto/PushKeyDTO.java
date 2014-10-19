@@ -2,18 +2,11 @@ package peyto.push.dto;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import peyto.push.common.types.PushOSType;
+import peyto.push.common.types.PushType;
 
-import peyto.push.common.pushkeys.PushOSType;
-import peyto.push.common.pushkeys.PushType;
-
-@Entity
-@Table( name = PushKeyDTO.TABLE_NAME )
 public class PushKeyDTO {
 
-	public static final	String TABLE_NAME	= "PUSH_KEYS";
-	
 	private String	pushkey;
 	private String	userId;
 	private String	appId;

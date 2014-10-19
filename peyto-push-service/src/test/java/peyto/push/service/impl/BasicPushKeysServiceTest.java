@@ -16,17 +16,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import peyto.push.common.pushkeys.PushOSType;
-import peyto.push.common.pushkeys.PushType;
+import peyto.push.common.types.PushOSType;
+import peyto.push.common.types.PushType;
 import peyto.push.dto.PushKeyDTO;
 import peyto.push.dto.PushKeyPaginationDTO;
 import peyto.push.service.Peyto;
-import peyto.push.service.config.TestConfigLoader;
 import peyto.push.service.config.TestDataSourceConfig;
-import peyto.push.service.config.TestHibernate4PersistenceConfig;
+import peyto.push.service.config.TestMyBatisPersistenceConfig;
+import peyto.push.service.config.TestPropertySourceLoader;
 import peyto.push.service.config.TestServiceConfig;
 
 /**
@@ -63,12 +64,13 @@ public void testCRUD() throws Exception {
  */
 
 @RunWith( SpringJUnit4ClassRunner.class )
-@ContextConfiguration( classes = { 
-		TestConfigLoader.class,
+@ContextConfiguration(classes = { 
+		TestPropertySourceLoader.class,
 		TestDataSourceConfig.class,
-		TestHibernate4PersistenceConfig.class,
+		TestMyBatisPersistenceConfig.class,
 		TestServiceConfig.class
 		} )
+@ActiveProfiles( Peyto.PROFILE_DEVELOPMENT )
 public class BasicPushKeysServiceTest {
 
 	@Autowired

@@ -1,4 +1,4 @@
-package peyto.push.common.pushkeys;
+package peyto.push.common.types;
 
 public enum PushOSType {
 
