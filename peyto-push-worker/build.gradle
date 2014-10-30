@@ -42,11 +42,14 @@ dependencies {
 
     compile ( "com.ganyo:gcm-server:1.0.2" )
 
+    //compile ( "org.apache.avro:avro:1.7.7" )
+    //compile ( "org.apache.avro:avro-ipc:1.7.7" )
+
 	// https://github.com/notnoop/java-apns
 	// com.notnoop.apns:apns:0.2.3
-    compile files ( "../peyto-push-home/peyto.lib/apns-0.2.3.jar" )
+	compile ("com.notnoop.apns:apns:1.0.0.Beta4")
 
-	//compile project( ":peyto-push-service" )
+	compile project( ":peyto-push-service" )
 	
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }

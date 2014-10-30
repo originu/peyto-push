@@ -65,7 +65,7 @@ public void testCRUD() throws Exception {
 public class BasicPushServersTest {
 
 	@Autowired
-	BasicPushsServersService	service;
+	BasicPushServersService	service;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

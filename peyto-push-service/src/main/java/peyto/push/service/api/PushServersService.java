@@ -2,7 +2,7 @@ package peyto.push.service.api;
 
 import peyto.push.dto.PushServerDTO;
 
-public interface PushsServersService {
+public interface PushServersService {
 
 	int add(PushServerDTO pushServer);
 

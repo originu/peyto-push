@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import peyto.push.dao.api.PushServersDAO;
 import peyto.push.dto.PushServerDTO;
-import peyto.push.service.api.PushsServersService;
+import peyto.push.service.api.PushServersService;
 
-public class BasicPushsServersService implements PushsServersService {
+public class BasicPushServersService implements PushServersService {
 
 	@Autowired
 	private PushServersDAO	dao;

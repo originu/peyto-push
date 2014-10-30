@@ -4,9 +4,9 @@ import java.util.Date;
 
 import peyto.push.common.types.PushType;
 
+public class PushGCMCertDTO implements PushCert {
 
-public class PushGCMCertDTO {
-
+	private int gcmCertId;
 	private String appId;
 	private String appDesc;
 	private PushType	pushType;
@@ -17,7 +17,13 @@ public class PushGCMCertDTO {
 	private int certTimeToLive;
 	private String certGMail;	
 	private Date createdDate;
-	
+
+	public int getGcmCertId() {
+		return gcmCertId;
+	}
+	public void setGcmCertId(int gcmCertId) {
+		this.gcmCertId = gcmCertId;
+	}
 	public String getAppId() {
 		return appId;
 	}
@@ -80,12 +86,12 @@ public class PushGCMCertDTO {
 	}
 	@Override
 	public String toString() {
-		return "PushGCMCertDTO [appId=" + appId + ", appDesc=" + appDesc
-				+ ", pushType=" + pushType + ", certApiKey=" + certApiKey
-				+ ", certProductId=" + certProductId + ", certDelayWhileIdle="
-				+ certDelayWhileIdle + ", certRetry=" + certRetry
-				+ ", certTimeToLive=" + certTimeToLive + ", certGMail="
-				+ certGMail + ", createdDate=" + createdDate + "]";
+		return "PushGCMCertDTO [gcmCertId=" + gcmCertId + ", appId=" + appId
+				+ ", appDesc=" + appDesc + ", pushType=" + pushType
+				+ ", certApiKey=" + certApiKey + ", certProductId="
+				+ certProductId + ", certDelayWhileIdle=" + certDelayWhileIdle
+				+ ", certRetry=" + certRetry + ", certTimeToLive="
+				+ certTimeToLive + ", certGMail=" + certGMail
+				+ ", createdDate=" + createdDate + "]";
 	}
-	
 }

@@ -9,7 +9,9 @@ import peyto.push.service.api.PushKeysService;
 import peyto.push.service.impl.BasicPushAPNSCertsService;
 import peyto.push.service.impl.BasicPushGCMCertsService;
 import peyto.push.service.impl.BasicPushKeysService;
-import peyto.push.service.impl.BasicPushsServersService;
+import peyto.push.service.impl.BasicPushServersService;
+import peyto.push.service.impl.BasicPushWorkersCertsService;
+import peyto.push.service.impl.BasicPushWorkersService;
 
 @Configuration
 //@ComponentScan( "peyto.push.service.impl" )
@@ -31,8 +33,18 @@ public class TestServiceConfig {
 	}
 	
 	@Bean
-	public BasicPushsServersService basicPushsServersService() {
-		return new BasicPushsServersService();
+	public BasicPushServersService basicPushsServersService() {
+		return new BasicPushServersService();
+	}
+
+	@Bean
+	public BasicPushWorkersCertsService basicPushWorkersCertsService() {
+		return new BasicPushWorkersCertsService();
+	}
+
+	@Bean
+	public BasicPushWorkersService basicPushWorkersService() {
+		return new BasicPushWorkersService();
 	}
 	
 }

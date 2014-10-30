@@ -93,7 +93,7 @@ public class BasicPushAPNSCertsServiceTest {
 	@Test
 	public void add() {
 		PushAPNSCertDTO	dto	= new PushAPNSCertDTO();
-		dto.setAppId( "testAppId" );
+		dto.setAppId( "appId::0" );
 		dto.setAppDesc( "test description" );
 		dto.setPushType( PushType.APNS );
 		dto.setCertBin( new byte[1024] );
@@ -107,7 +107,7 @@ public class BasicPushAPNSCertsServiceTest {
 	@Test
 	public void getByAppId() {
 		add();
-		String	appId	= "testAppId";
+		String	appId	= "appId::0";
 		PushAPNSCertDTO	dto	= service.getByAppId( appId );
 		System.out.println( dto );
 		assertNotNull( dto );
@@ -116,7 +116,7 @@ public class BasicPushAPNSCertsServiceTest {
 	@Test
 	public void deleteByAppId() {
 		add();
-		String	appId	= "testAppId";
+		String	appId	= "appId::0";
 		int deleteByAppId = service.deleteByAppId( appId );
 		assertTrue( deleteByAppId > 0 );
 	}

@@ -92,7 +92,7 @@ public class BasicPushGCMCertsServiceTest {
 	@Test
 	public void add() {
 		PushGCMCertDTO	dto	= new PushGCMCertDTO();
-		dto.setAppId( "testAppId" );
+		dto.setAppId( "appId::0" );
 		dto.setAppDesc( "test description" );
 		dto.setPushType( PushType.GCM );
 		dto.setCertApiKey( "AIzaSyCKRNR2wyVpzzx520jE-wCGXIbYzrYNqhg" );
@@ -109,7 +109,7 @@ public class BasicPushGCMCertsServiceTest {
 	@Test
 	public void getPushGCMCertByAppId() {
 		add();
-		String	appId	= "testAppId";
+		String	appId	= "appId::0";
 		PushGCMCertDTO	dto	= service.getByAppId( appId );
 		assertNotNull( dto );
 	}
@@ -117,7 +117,7 @@ public class BasicPushGCMCertsServiceTest {
 	@Test
 	public void deleteByAppId() {
 		add();
-		String	appId	= "testAppId";
+		String	appId	= "appId::0";
 		int deleteByAppId = service.deleteByAppId( appId );
 		assertTrue( deleteByAppId > 0 );
 	}

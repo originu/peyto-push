@@ -5,6 +5,7 @@
 <mapper namespace="peyto.push.dao.api.PushAPNSCertsDAO">
 
 	<resultMap id="pushAPNSCertResultMap" type="PushAPNSCertDTO">
+		<result property="apnsCertId"			column="APNS_CERT_ID"/>
 		<result property="appId"				column="APP_ID"/>
 		<result property="appDesc"				column="APP_DESC"/>
 		<result property="pushType"				column="PUSH_TYPE"/>
@@ -15,6 +16,7 @@
 	</resultMap>
 	
 	<sql id="columns">
+		APNS_CERT_ID,
 		APP_ID,
 		APP_DESC,  
 		PUSH_TYPE,  
@@ -31,6 +33,7 @@
 		) 
 		VALUES 
 		(
+			#{apnsCertId},
 			#{appId},
 			#{appDesc},
 			#{pushType},

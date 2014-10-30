@@ -1,11 +1,13 @@
 package peyto.push.dto;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import peyto.push.common.types.PushType;
 
-public class PushAPNSCertDTO {
+public class PushAPNSCertDTO implements PushCert {
 
+	private int apnsCertId;
 	private String appId;
 	private String appDesc;
 	private PushType	pushType;
@@ -14,6 +16,12 @@ public class PushAPNSCertDTO {
 	private Date certExpDate;
 	private Date createdDate;
 	
+	public int getApnsCertId() {
+		return apnsCertId;
+	}
+	public void setApnsCertId(int apnsCertId) {
+		this.apnsCertId = apnsCertId;
+	}
 	public String getAppId() {
 		return appId;
 	}
@@ -58,10 +66,11 @@ public class PushAPNSCertDTO {
 	}
 	@Override
 	public String toString() {
-		return "PushAPNSCertDTO [appId=" + appId + ", appDesc=" + appDesc
-				+ ", pushType=" + pushType + ", certBin=" + certBin
-				+ ", certPW=" + certPW + ", certExpDate=" + certExpDate
-				+ ", createdDate=" + createdDate + "]";
+		return "PushAPNSCertDTO [apnsCertId=" + apnsCertId + ", appId=" + appId
+				+ ", appDesc=" + appDesc + ", pushType=" + pushType
+				+ ", certBin=" + Arrays.toString(certBin) + ", certPW="
+				+ certPW + ", certExpDate=" + certExpDate + ", createdDate="
+				+ createdDate + "]";
 	}
 	
 }
