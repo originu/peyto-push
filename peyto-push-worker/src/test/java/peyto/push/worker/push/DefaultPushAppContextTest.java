@@ -56,7 +56,7 @@ public class DefaultPushAppContextTest {
 		String	appId	= "appId::0";
 		PushType	pushType	= PushType.GCM;
 		PushAppNotificatorContext  appNotificatorContext = context.getAppNotificatorContext( appId );
-		PushNotificator pushNotificator = appNotificatorContext.get( pushType );
+		PushNotificator	pushNotificator = appNotificatorContext.get( pushType );
 		
 		int certId	= 1;
 		context.add( appId, pushType, certId );
@@ -66,6 +66,12 @@ public class DefaultPushAppContextTest {
 		context.deactivate( appId, pushType, certId );
 		
 		context.remove( appId, pushType, certId );
+	}
+	
+	@Test
+	public void get() {
+		String	appId	= "appId::0";
+		context.getByAppId( appId );
 	}
 
 }

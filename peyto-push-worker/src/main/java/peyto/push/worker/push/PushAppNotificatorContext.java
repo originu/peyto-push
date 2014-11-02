@@ -1,5 +1,6 @@
 package peyto.push.worker.push;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 import peyto.push.common.types.PushType;
@@ -50,6 +51,10 @@ public class PushAppNotificatorContext {
 		for( PushNotificator noti : pushCertMap.values() ) {
 			noti.shutdown();
 		}
+	}
+
+	public Collection< PushNotificator > getAll() {
+		return pushCertMap.values();
 	}
 	
 }

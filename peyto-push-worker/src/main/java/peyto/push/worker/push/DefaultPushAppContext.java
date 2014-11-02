@@ -1,5 +1,6 @@
 package peyto.push.worker.push;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -80,6 +81,11 @@ public class DefaultPushAppContext {
 		PushAppNotificatorContext context = pushAppNotificatorContextMap.get( appId );
 		PushNotificator pushNotificator = context.get( pushType );
 		pushNotificator.deactivate();
+	}
+
+	public Collection< PushNotificator > getByAppId( String appId ) {
+		PushAppNotificatorContext context = pushAppNotificatorContextMap.get( appId );
+		return context.getAll();
 	}
 
 }

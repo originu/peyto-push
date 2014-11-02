@@ -12,8 +12,6 @@ public interface PushNotificator {
 	
 	// apns
 	
-	
-	
 	public void startup();
 	public void shutdown();
 	public void activate();
