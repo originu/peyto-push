@@ -6,9 +6,9 @@ public interface PushAPNSCertsService {
 
 	public int add( PushAPNSCertDTO pushAPNSCert );
 
-	public PushAPNSCertDTO getByAppId( String appId );
+	public PushAPNSCertDTO getByApnsCertId( int apnsCertId );
 
-	public int deleteByAppId( String appId );
+	public int deleteByApnsCertId( int apnsCertId );
 
 	public int deleteAll();
 

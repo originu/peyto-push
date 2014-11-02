@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="peyto.push.dao.api.PushWorkersDAO">
+
+	<resultMap id="pushWorkerResultMap" type="PushWorkerDTO">
+		<result property="workerId"		column="WORKER_ID"/>
+		<result property="workerName"	column="WORKER_NAME"/>
+		<result property="workerDesc"	column="WORKER_DESC"/>
+	</resultMap>
+	
+	<sql id="columns">
+		WORKER_ID,
+		WORKER_NAME,
+		WORKER_DESC
+	</sql>
+
+	<insert id="add" parameterType="PushWorkerDTO">
+		INSERT INTO PT_PUSH_WORKERS
+		(
+			<include refid="columns"/>
+		) 
+		VALUES 
+		(
+			#{workerId},
+			#{workerName},
+			#{workerDesc}
+		)
+	</insert>
+
+	<select id="getByWorkerId" resultMap="pushWorkerResultMap">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			PT_PUSH_WORKERS
+		WHERE
+			WORKER_ID = #{workerId}
+	</select>
+
+	<delete id="deleteAll">
+		DELETE FROM PT_PUSH_WORKERS
+	</delete>
+
+	<delete id="deleteByWorkerId">
+		DELETE FROM PT_PUSH_WORKERS WHERE WORKER_ID = #{workerId}
+	</delete>
+
+</mapper>

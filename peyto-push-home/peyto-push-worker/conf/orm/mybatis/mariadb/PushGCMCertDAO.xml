@@ -5,6 +5,7 @@
 <mapper namespace="peyto.push.dao.api.IPushGCMCertDAO">
 
 	<resultMap id="pushGCMCertResultMap" type="PushGCMCertDTO">
+		<result property="gcmCertId"			column="GCM_CERT_ID"/>
 		<result property="appId"				column="APP_ID"/>
 		<result property="appDesc"				column="APP_DESC"/>
 		<result property="pushType"				column="PUSH_TYPE"/>
@@ -18,6 +19,7 @@
 	</resultMap>
 	
 	<sql id="columns">
+		GCM_CERT_ID,
 		APP_ID,
 		APP_DESC,  
 		PUSH_TYPE,  
@@ -37,6 +39,7 @@
 		) 
 		VALUES 
 		(
+			#{gcmCertId},
 			#{appId},
 			#{appDesc},
 			#{pushType},
@@ -50,13 +53,13 @@
 		)
 	</insert>
 
-	<select id="getByAppId" resultMap="pushGCMCertResultMap">
+	<select id="getByGcmCertId" resultMap="pushGCMCertResultMap">
 		SELECT 
 			<include refid="columns"/>
 		FROM 
 			PT_PUSH_GCM_CERTS
 		WHERE
-			APP_ID = #{appId}
+			GCM_CERT_ID = #{gcmCertId}
 	</select>
 
 	<select id="getAll" resultMap="pushGCMCertResultMap">
@@ -70,8 +73,8 @@
 		DELETE FROM PT_PUSH_GCM_CERTS
 	</delete>
 
-	<delete id="deleteByAppId">
-		DELETE FROM PT_PUSH_GCM_CERTS WHERE APP_ID = #{appId}
+	<delete id="deleteByGcmCertId">
+		DELETE FROM PT_PUSH_GCM_CERTS WHERE GCM_CERT_ID = #{gcmCertId}
 	</delete>
 	
 <!-- 	<update id="updatePeytoSample" parameterType="PeytoSampleDTO"> -->

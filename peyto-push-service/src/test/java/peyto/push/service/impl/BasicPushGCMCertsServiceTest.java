@@ -1,6 +1,7 @@
 package peyto.push.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 
@@ -107,18 +108,18 @@ public class BasicPushGCMCertsServiceTest {
 	}
 
 	@Test
-	public void getPushGCMCertByAppId() {
+	public void getPushGCMCertByGcmCertId() {
 		add();
-		String	appId	= "appId::0";
-		PushGCMCertDTO	dto	= service.getByAppId( appId );
+		int	gcmCertId	= 1;
+		PushGCMCertDTO	dto	= service.getByGcmCertId( gcmCertId );
 		assertNotNull( dto );
 	}
 	
 	@Test
-	public void deleteByAppId() {
+	public void deleteByGcmCertId() {
 		add();
-		String	appId	= "appId::0";
-		int deleteByAppId = service.deleteByAppId( appId );
+		int	gcmCertId	= 1;
+		int deleteByAppId = service.deleteByGcmCertId( gcmCertId );
 		assertTrue( deleteByAppId > 0 );
 	}
 

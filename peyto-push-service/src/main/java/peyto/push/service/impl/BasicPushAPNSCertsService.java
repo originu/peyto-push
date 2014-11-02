@@ -19,13 +19,13 @@ public class BasicPushAPNSCertsService implements PushAPNSCertsService {
 	}
 
 	@Override
-	public PushAPNSCertDTO getByAppId(String appId) {
-		return dao.getByAppId( appId );
+	public PushAPNSCertDTO getByApnsCertId(int apnsCertId) {
+		return dao.getByApnsCertId( apnsCertId );
 	}
 
 	@Override
-	public int deleteByAppId(String appId) {
-		return dao.deleteByAppId( appId );
+	public int deleteByApnsCertId(int apnsCertId) {
+		return dao.deleteByApnsCertId( apnsCertId );
 	}
 	
 	@Override

@@ -53,21 +53,28 @@
 		)
 	</insert>
 
-	<select id="getByAppId" resultMap="pushGCMCertResultMap">
+	<select id="getByGcmCertId" resultMap="pushGCMCertResultMap">
 		SELECT 
 			<include refid="columns"/>
 		FROM 
 			PT_PUSH_GCM_CERTS
 		WHERE
-			APP_ID = #{appId}
+			GCM_CERT_ID = #{gcmCertId}
+	</select>
+
+	<select id="getAll" resultMap="pushGCMCertResultMap">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			PT_PUSH_GCM_CERTS
 	</select>
 
 	<delete id="deleteAll">
 		DELETE FROM PT_PUSH_GCM_CERTS
 	</delete>
 
-	<delete id="deleteByAppId">
-		DELETE FROM PT_PUSH_GCM_CERTS WHERE APP_ID = #{appId}
+	<delete id="deleteByGcmCertId">
+		DELETE FROM PT_PUSH_GCM_CERTS WHERE GCM_CERT_ID = #{gcmCertId}
 	</delete>
 	
 <!-- 	<update id="updatePeytoSample" parameterType="PeytoSampleDTO"> -->

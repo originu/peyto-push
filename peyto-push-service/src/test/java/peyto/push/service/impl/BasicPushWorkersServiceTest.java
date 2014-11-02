@@ -3,7 +3,7 @@ package peyto.push.service.impl;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Calendar;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,10 +16,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import peyto.push.common.types.PushType;
-import peyto.push.dto.PushAPNSCertDTO;
+import peyto.push.dto.PushWorkerDTO;
 import peyto.push.service.Peyto;
-import peyto.push.service.api.PushAPNSCertsService;
 import peyto.push.service.config.TestDataSourceConfig;
 import peyto.push.service.config.TestMyBatisPersistenceConfig;
 import peyto.push.service.config.TestPropertySourceLoader;
@@ -65,10 +63,10 @@ public void testCRUD() throws Exception {
 		TestServiceConfig.class
 		} )
 @ActiveProfiles( Peyto.PROFILE_DEVELOPMENT )
-public class BasicPushAPNSCertsServiceTest {
+public class BasicPushWorkersServiceTest {
 
 	@Autowired
-	PushAPNSCertsService service;
+	BasicPushWorkersService service;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -89,37 +87,33 @@ public class BasicPushAPNSCertsServiceTest {
 	public void tearDown() throws Exception {
 	}
 
-	// APNS
 	@Test
 	public void add() {
-		PushAPNSCertDTO	dto	= new PushAPNSCertDTO();
-		dto.setAppId( "appId::0" );
-		dto.setAppDesc( "test description" );
-		dto.setPushType( PushType.APNS );
-		dto.setCertBin( new byte[1024] );
-		dto.setCertPW( "test_pw" );
-		dto.setCertExpDate( Calendar.getInstance().getTime() );
-		dto.setCreatedDate( Calendar.getInstance().getTime() );
+		PushWorkerDTO	dto	= new PushWorkerDTO();
+		dto.setWorkerId( "workerId::0" );
+		dto.setWorkerName( "workerId name" );
+		dto.setWorkerDesc( "workerId desc" );
 		int add = service.add( dto );
 		assertTrue( add > 0 );
 	}
 
 	@Test
-	public void getByApnsCertId() {
+	public void getByWorkerId() {
 		add();
-		int	apnsCertId	= 2;
-		PushAPNSCertDTO	dto	= service.getByApnsCertId( apnsCertId );
+		String	workerId	= "workerId::0";
+		List< PushWorkerDTO >	dto	= service.getByWorkerId( workerId );
 		System.out.println( dto );
 		assertNotNull( dto );
 	}
 
-	@Test
-	public void deleteByApnsCertId() {
-		add();
-		int	apnsCertId	= 2;
-		int deleteByAppId = service.deleteByApnsCertId( apnsCertId );
-		assertTrue( deleteByAppId > 0 );
-	}
+//	@Test
+//	public void deleteByWorkerId() {
+//		add();
+//		String	workerId	= "workerId::0";
+//		String	appId		= "appId::0";
+//		int deleteByWorkerAndAppId = service.deleteByWorkerId( workerId );
+//		assertTrue( deleteByWorkerAndAppId > 0 );
+//	}
 
 	@Test
 	public void deleteAll() {

@@ -11,9 +11,9 @@ public interface PushGCMCertsDAO {
 
 	public int add( PushGCMCertDTO pushGCMCert );
 
-	public PushGCMCertDTO getByAppId(String appId);
+	public PushGCMCertDTO getByGcmCertId(int gcmCertId);
 
-	public int deleteByAppId(String appId);
+	public int deleteByGcmCertId(int gcmCertId);
 
 	public int deleteAll();
 

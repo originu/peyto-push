@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="peyto.push.dao.api.PushWorkersCertsDAO">
+
+	<resultMap id="pushWorkerCertResultMap" type="PushWorkerCertDTO">
+		<result property="workerId"			column="WORKER_ID"/>
+		<result property="appId"			column="APP_ID"/>
+		<result property="useGcm"			column="USE_GCM"/>
+		<result property="activatedGcm"		column="ACTIVATED_GCM"/>
+		<result property="gcmCertId"		column="GCM_CERT_ID"/>
+		<result property="useApns"			column="USE_APNS"/>
+		<result property="apnsCertId"		column="APNS_CERT_ID"/>
+		<result property="activatedApns"	column="ACTIVATED_APNS"/>
+	</resultMap>
+	
+	<sql id="columns">
+		WORKER_ID,
+		APP_ID,
+		USE_GCM,
+		ACTIVATED_GCM,
+		GCM_CERT_ID,  
+		USE_APNS,
+		ACTIVATED_APNS,
+		APNS_CERT_ID  
+	</sql>
+
+	<insert id="add" parameterType="PushWorkerCertDTO">
+		INSERT INTO PT_PUSH_WORKERS_CERTS
+		(
+			<include refid="columns"/>
+		) 
+		VALUES 
+		(
+			#{workerId},
+			#{appId},
+			#{useGcm},
+			#{activatedGcm},
+			#{gcmCertId},
+			#{useApns},
+			#{activatedApns},
+			#{apnsCertId}
+		)
+	</insert>
+
+	<select id="getByWorkerId" resultMap="pushWorkerCertResultMap">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			PT_PUSH_WORKERS_CERTS
+		WHERE
+			WORKER_ID = #{workerId}
+	</select>
+
+	<select id="getByWorkerIdAndAppId" resultMap="pushWorkerCertResultMap">
+		SELECT 
+			<include refid="columns"/>
+		FROM 
+			PT_PUSH_WORKERS_CERTS
+		WHERE
+			WORKER_ID = #{workerId} AND APP_ID = #{appId}
+	</select>
+
+	<delete id="deleteAll">
+		DELETE FROM PT_PUSH_WORKERS_CERTS
+	</delete>
+
+	<delete id="deleteByWorkerId">
+		DELETE FROM PT_PUSH_WORKERS_CERTS WHERE WORKER_ID = #{workerId}
+	</delete>
+
+</mapper>

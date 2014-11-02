@@ -36,7 +36,6 @@
 			#{apnsCertId},
 			#{appId},
 			#{appDesc},
-			#{pushType},
 			#{certBin},
 			#{certPW},
 			#{certExpDate},
@@ -44,21 +43,21 @@
 		)
 	</insert>
 
-	<select id="getByAppId" resultMap="pushAPNSCertResultMap">
+	<select id="getByApnsCertId" resultMap="pushAPNSCertResultMap">
 		SELECT 
 			<include refid="columns"/>
 		FROM 
 			PT_PUSH_APNS_CERTS
 		WHERE
-			APP_ID = #{appId}
+			APNS_CERT_ID = #{apnsCertId}
 	</select>
 
 	<delete id="deleteAll">
 		DELETE FROM PT_PUSH_APNS_CERTS
 	</delete>
 
-	<delete id="deleteByAppId">
-		DELETE FROM PT_PUSH_APNS_CERTS WHERE APP_ID = #{appId}
+	<delete id="deleteByApnsCertId">
+		DELETE FROM PT_PUSH_APNS_CERTS WHERE APNS_CERT_ID = #{apnsCertId}
 	</delete>
 	
 <!-- 	<update id="updatePeytoSample" parameterType="PeytoSampleDTO"> -->

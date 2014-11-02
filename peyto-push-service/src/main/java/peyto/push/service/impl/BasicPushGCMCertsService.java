@@ -19,13 +19,13 @@ public class BasicPushGCMCertsService implements PushGCMCertsService {
 	}
 
 	@Override
-	public PushGCMCertDTO getByAppId(String appId) {
-		return dao.getByAppId( appId );
+	public PushGCMCertDTO getByGcmCertId(int gcmCertId) {
+		return dao.getByGcmCertId( gcmCertId );
 	}
 
 	@Override
-	public int deleteByAppId(String appId) {
-		return dao.deleteByAppId( appId );
+	public int deleteByGcmCertId(int gcmCertId) {
+		return dao.deleteByGcmCertId( gcmCertId );
 	}
 
 	@Override

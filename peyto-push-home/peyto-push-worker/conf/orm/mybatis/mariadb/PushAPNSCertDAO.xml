@@ -5,6 +5,7 @@
 <mapper namespace="peyto.push.dao.api.IPushAPNSCertDAO">
 
 	<resultMap id="pushAPNSCertResultMap" type="PushAPNSCertDTO">
+		<result property="apnsCertId"			column="APNS_CERT_ID"/>
 		<result property="appId"				column="APP_ID"/>
 		<result property="appDesc"				column="APP_DESC"/>
 		<result property="pushType"				column="PUSH_TYPE"/>
@@ -15,10 +16,11 @@
 	</resultMap>
 	
 	<sql id="columns">
+		APNS_CERT_ID,
 		APP_ID,
 		APP_DESC,  
 		PUSH_TYPE,  
-<!-- 		CERT_BIN, -->
+		CERT_BIN,
 		CERT_PW,  
 		CERT_EXP_DATE,
 		CREATED_DATE		
@@ -31,30 +33,31 @@
 		) 
 		VALUES 
 		(
+			#{apnsCertId},
 			#{appId},
 			#{appDesc},
-<!-- 			#{certBin}, -->
+			#{certBin},
 			#{certPW},
 			#{certExpDate},
 			#{createdDate}
 		)
 	</insert>
 
-	<select id="getByAppId" resultMap="pushAPNSCertResultMap">
+	<select id="getByApnsCertId" resultMap="pushAPNSCertResultMap">
 		SELECT 
 			<include refid="columns"/>
 		FROM 
 			PT_PUSH_APNS_CERTS
 		WHERE
-			APP_ID = #{appId}
+			APNS_CERT_ID = #{apnsCertId}
 	</select>
 
 	<delete id="deleteAll">
 		DELETE FROM PT_PUSH_APNS_CERTS
 	</delete>
 
-	<delete id="deleteByAppId">
-		DELETE FROM PT_PUSH_APNS_CERTS WHERE APP_ID = #{appId}
+	<delete id="deleteByApnsCertId">
+		DELETE FROM PT_PUSH_APNS_CERTS WHERE APNS_CERT_ID = #{apnsCertId}
 	</delete>
 	
 <!-- 	<update id="updatePeytoSample" parameterType="PeytoSampleDTO"> -->
